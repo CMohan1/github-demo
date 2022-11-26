@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
- * @author Yadagiri Reddy
+ 
  * How to handle the textboxes using selenium webdriver?
  */
 public class HandleTextBoxes {

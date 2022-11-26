@@ -1,0 +1,56 @@
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Signup_Automation {
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("https://www.demoblaze.com/#");
+		String urlFromWebpage = driver.getCurrentUrl();
+		if (urlFromWebpage.equals("https://www.demoblaze.com/#")) {
+			System.out.println("PASS");
+		} else {
+			System.out.println("FAIL");
+		}
+
+		// singup
+
+		driver.findElement(By.id("signin2")).click();
+		driver.findElement(By.id("sign-username")).sendKeys("Amazon0");
+		driver.findElement(By.id("sign-password")).sendKeys("Filpkart0");
+		driver.findElement(By.xpath("//button[text()='Sign up']")).click();
+		Thread.sleep(3000);
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+		Thread.sleep(2000);
+
+		// login
+
+		driver.findElement(By.xpath("//a[text()='Log in']")).click();
+		driver.findElement(By.id("loginusername")).sendKeys("Amazon0");
+		driver.findElement(By.id("loginpassword")).sendKeys("Filpkart0");
+		driver.findElement(By.xpath("//button[text()='Log in']")).click();
+		Thread.sleep(2000);
+
+		// verifyTitle
+
+		String exceptedTitle = "STORE";
+		String acutalTitle = driver.getTitle();
+		if (acutalTitle.equalsIgnoreCase(exceptedTitle))
+			System.out.println("Title Matched");
+		else
+			System.out.println("Title didn't match");
+
+		  
+
+	}
+
+}
